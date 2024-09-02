@@ -1,0 +1,145 @@
+# General configuration
+
+theme = "onedark"
+
+[editor]
+auto-pairs = true
+completion-timeout = 5 # Default: 250, Instant: 5
+bufferline = "multiple" # never, always, multiple
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name", "file-modification-indicator", "read-only-indicator"]
+right = ["diagnostics", "version-control", "separator", "register", "file-encoding", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+enable = true
+display-messages = false
+auto-signature-help = true
+display-inlay-hints = false
+display-signature-help-docs = true
+snippets = true
+goto-reference-include-declaration = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 300000 # Will save every 5 minutes
+
+[editor.soft-wrap]
+enable = true
+
+# Keybind
+# Ctrl, Shift and Alt modifiers are encoded respectively with the prefixes C-, S- and A-
+
+[keys.normal]
+# Disable keybind not used
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+Q = "no_op"
+q = "no_op"
+
+# Saves and file management
+C-s = ":w" # Maps Ctrl-s to save file
+C-S-s = ":wa" # Maps Ctrl-Shift-s to save all
+C-n = ":n" # Maps Ctrl-n to create a new file
+A-S-f = "file_picker_in_current_buffer_directory"
+
+# Windows management
+A-S-h = ":hs" # Open the current file in a horizontal split
+A-S-v = ":vs" # Open the current file in a vertical split
+A-S-x = "wclose" # Close the current windows
+C-S-h = "jump_view_left" # Select windows to the left
+C-S-j = "jump_view_down" # Select windows to the down
+C-S-k = "jump_view_up" # Select windows to the up
+C-S-l = "jump_view_right" # Select windows to the right
+
+# Buffers
+C-h = ":bp" # Maps Ctrl-h to previous buffer (tab)
+C-l = ":bn" # Maps Ctrl-l to next buffer (tab)
+C-x = ":bc" # Maps Ctrl-x to close current buffer (tab)
+
+# Others
+C-space = "code_action" # Maps Ctrl-space to show possible code actions
+A-S-i = ":fmt" # Maps Alt-Shift-i to format code using the lsp
+"ret" = ["open_below", "normal_mode"] # Maps the enter key to open_below then re-enter normal mode
+C-S-A-r = ":config-reload" # Reload helix config
+
+[keys.insert]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+
+[keys.select]
+
+[keys.normal."space"]
+
+# create a new minor mode bound to `+`
+[keys.normal."+"]
+# v = ":run-shell-command npm run dev"
+
+
+# Good keybind to know
+# h -> move cursor left
+# j -> move cursor down
+# k -> move cursor up
+# l -> move cursor right
+
+# C-s -> save file
+# C-S-s -> save all files
+# C-n -> create a new file
+# A-S-f -> open file picker from current buffer directory might change it to work dir
+
+# C-h -> goto previous buffer (tab)
+# C-l -> goto next buffer (tab)
+# C-x -> close current buffer (tab)
+
+# C-* -> save currently selected text to regex 
+# n -> select next occurence of regex 
+# S-n -> select previous occurence of regex 
+
+# A-S-h -> open a split windows horizontaly
+# A-S-v -> open a split windows verticaly
+# C-S-h -> select window to the left
+# C-S-j -> select window to the bottom
+# C-S-k -> select window to the top
+# C-S-l -> select window to the right
+# C-S-x -> close the selected window
+
+# S-c -> add a cursor bellow
+# A-S-c -> add a cursor above
+# , -> remove all multi cursor
+
+# C-space -> code action
+# A-S-i -> format code using lsp
+# C-S-A-r -> reload helix config
+
+# ~ -> switch case of selection
+# r -> replace selection with char
+# R -> replace selection with yanked text
+# u -> undo change
+# U -> redo change
+
