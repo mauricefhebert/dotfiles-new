@@ -1,12 +1,17 @@
 # General configuration
 
-theme = "onedark"
+theme = "base16_terminal" # onedark, base16_terminal, base16_transparent
 
 [editor]
 auto-pairs = true
+mouse = false
 completion-timeout = 5 # Default: 250, Instant: 5
 bufferline = "multiple" # never, always, multiple
 color-modes = true
+true-color = true
+cursorline = true
+line-number = "relative"
+rulers = [120]
 
 [editor.statusline]
 left = ["mode", "spinner"]
@@ -36,7 +41,10 @@ hidden = false
 
 [editor.auto-save]
 after-delay.enable = true
-after-delay.timeout = 300000 # Will save every 5 minutes
+
+[editor.indent-guides]
+character = "╎"
+render = true
 
 [editor.soft-wrap]
 enable = true
@@ -73,9 +81,19 @@ C-S-k = "jump_view_up" # Select windows to the up
 C-S-l = "jump_view_right" # Select windows to the right
 
 # Buffers
-C-h = ":bp" # Maps Ctrl-h to previous buffer (tab)
-C-l = ":bn" # Maps Ctrl-l to next buffer (tab)
+"C-," = ":bp" # Maps Ctrl-h to previous buffer (tab)
+"C-." = ":bn" # Maps Ctrl-l to next buffer (tab)
 C-x = ":bc" # Maps Ctrl-x to close current buffer (tab)
+
+# Movements
+C-h = "goto_line_start" # goto line start
+C-j = "page_down" # jump down
+C-k = "page_up" # jump up
+C-l = "goto_line_end" # goto line end
+
+# Selections
+A-x = "extend_to_line_bounds"
+S-x = ["extend_line_up", "extend_to_line_bounds"]
 
 # Others
 C-space = "code_action" # Maps Ctrl-space to show possible code actions
@@ -94,19 +112,32 @@ home = "no_op"
 end = "no_op"
 
 [keys.select]
+# Movements
+C-h = "goto_line_start" # goto line start
+C-j = "page_down" # jump down
+C-k = "page_up" # jump up
+C-l = "goto_line_end" # goto line end
+
+# Selection
+A-x = "extend_to_line_bounds"
+S-x = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.normal."space"]
 
 # create a new minor mode bound to `+`
 [keys.normal."+"]
 # v = ":run-shell-command npm run dev"
-
+g = ":run-shell-command lazygit"
 
 # Good keybind to know
 # h -> move cursor left
 # j -> move cursor down
 # k -> move cursor up
 # l -> move cursor right
+# C-S-h -> goto line start
+# C-S-j -> goto file end
+# C-S-k -> goto file start
+# C-S-l -> goto line end
 
 # C-s -> save file
 # C-S-s -> save all files
@@ -142,4 +173,3 @@ end = "no_op"
 # R -> replace selection with yanked text
 # u -> undo change
 # U -> redo change
-
