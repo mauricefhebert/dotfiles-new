@@ -118,3 +118,7 @@ echo "Cleanup completed."
 echo "Installing debugger..."
 sudo pacman -S --noconfirm llvm
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Formatter
+echo "Installing formatter"
+sudo npm install -g prettier

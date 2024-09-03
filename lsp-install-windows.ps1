@@ -119,3 +119,7 @@ Write-Host "Cleanup completed."
 Write-Host "Installing debugger ..."
 winget install llvm
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Formatter
+Write-Host "Installing prettier"
+npm install -g prettier
