@@ -63,6 +63,9 @@ npm install -g bash-language-server
 # CSS/SCSS LSP
 npm install -g vscode-langservers-extracted
 
+# Tailwind css
+npm install -g @tailwindcss/language-server
+
 # Docker Compose LSP
 npm install -g dockerfile-language-server-nodejs
 
