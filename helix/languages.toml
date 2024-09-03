@@ -1,0 +1,38 @@
+# LSP configuration
+
+# bash
+# css/scss
+# docker-compose
+# docker-file
+# go
+# graphql
+# html
+# javascript/typescript/jsx/tsx
+# json
+# lua
+# markdown
+# python
+# rust
+# sql
+# toml
+
+# vue
+[[language]]
+name = "vue"
+scope = "source.vue"
+injection-regex = "vue"
+file-types = ["vue"]
+roots = ["package.json"]
+block-comment-tokens = { start = "<!--", end = "-->" }
+indent = { tab-width = 2, unit = "  " }
+language-servers = [ "vuels" ]
+formatter = { command = "npx", args = ["prettier", "--parser", "vue"] }
+
+# yaml
+
+
+
+# DEBUGGER Configuration
+
+# dlv debugger
+# lldb-dap
