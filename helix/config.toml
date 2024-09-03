@@ -111,6 +111,10 @@ pagedown = "no_op"
 home = "no_op"
 end = "no_op"
 
+# Saves and file management
+C-s = ":w" # Maps Ctrl-s to save file
+C-S-s = ":wa" # Maps Ctrl-Shift-s to save all
+
 [keys.select]
 # Movements
 C-h = "goto_line_start" # goto line start

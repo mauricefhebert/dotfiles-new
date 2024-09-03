@@ -19,18 +19,16 @@
 # vue
 [[language]]
 name = "vue"
-scope = "source.vue"
-injection-regex = "vue"
-file-types = ["vue"]
-roots = ["package.json"]
-block-comment-tokens = { start = "<!--", end = "-->" }
-indent = { tab-width = 2, unit = "  " }
-language-servers = [ "vuels" ]
-formatter = { command = "npx", args = ["prettier", "--parser", "vue"] }
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = ["typescript-language-server"]
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "C:\\Users\\Mauri\\AppData\\Roaming\\npm\\node_modules\\@vue\\language-server"
+languages = ["vue"]
 
 # yaml
-
-
 
 # DEBUGGER Configuration
 
