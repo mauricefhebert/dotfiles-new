@@ -1,80 +1,120 @@
 
 #!/bin/bash
 
-# Update system and install necessary packages
-sudo pacman -Syu --needed npm go rustup cargo python-pip lua luarocks --noconfirm
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
-# Astro LSP
-npm install -g @astrojs/language-server
+# Update system and install necessary tools if not installed
+sudo pacman -Syu --noconfirm
+
+# Install npm if not installed
+if ! command_exists npm; then
+    echo "npm not found. Installing Node.js..."
+    sudo pacman -S --noconfirm nodejs npm
+fi
+
+# Install pip if not installed
+if ! command_exists pip; then
+    echo "pip not found. Installing Python..."
+    sudo pacman -S --noconfirm python-pip
+fi
+
+# Install rustup if not installed
+if ! command_exists rustup; then
+    echo "rustup not found. Installing Rust..."
+    sudo pacman -S --noconfirm rustup
+    rustup-init -y
+    source $HOME/.cargo/env
+fi
+
+# Install go if not installed
+if ! command_exists go; then
+    echo "Go not found. Installing Go..."
+    sudo pacman -S --noconfirm go
+fi
+
+# Install yay if not installed
+if ! command_exists yay; then
+    echo "yay not found. Installing yay..."
+    sudo pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+fi
+
+# Install git if not installed
+if ! command_exists git; then
+    echo "git not found. Installing git ..."
+    sudo pacman -S --noconfirm git
+fi
+
+# Create a temp directory for installation
+TEMP_DIR=~/install-temp
+mkdir -p "$TEMP_DIR"
+cd "$TEMP_DIR"
+
+# Install LSPs
 
 # Bash LSP
-npm install -g bash-language-server
+sudo npm install -g bash-language-server
 
 # CSS/SCSS LSP
-npm install -g vscode-langservers-extracted
-
-# Diff LSP
-npm install -g diff-langserver
+sudo npm install -g vscode-langservers-extracted
 
 # Docker Compose LSP
-npm install -g dockerfile-language-server-nodejs
-
-# Env LSP (dotenv)
-npm install -g vscode-dotenv-linter
+sudo npm install -g dockerfile-language-server-nodejs
 
 # Go LSP
 go install golang.org/x/tools/gopls@latest
 
 # GraphQL LSP
-npm install -g graphql-language-service-cli
+sudo npm install -g graphql-language-service-cli
 
 # HTML LSP
-npm install -g vscode-langservers-extracted
-
-# INI LSP
-npm install -g ini-language-server
+sudo npm install -g vscode-langservers-extracted
 
 # JavaScript/TypeScript/JSX/TSX LSP
-npm install -g typescript typescript-language-server
+sudo npm install -g typescript typescript-language-server
 
 # JSON LSP
-npm install -g vscode-langservers-extracted
-
-# Log LSP (log file highlighting)
-npm install -g log-language-server
+sudo npm install -g vscode-langservers-extracted
 
 # Lua LSP
-sudo pacman -S lua-language-server --noconfirm
+yay -S lua-language-server
 
 # Markdown LSP
-npm install -g unified-language-server
-
-# PowerShell LSP
-sudo pacman -S powershell --noconfirm
-pwsh -Command "Install-Module -Name PowerShellEditorServices -Force"
+sudo pacman -S --noconfirm marksman
 
 # Python LSP
 pip install python-lsp-server
-
-# Regex LSP
-npm install -g vscode-langservers-extracted
 
 # Rust LSP
 rustup component add rust-analyzer
 
 # SQL LSP
-npm install -g sql-language-server
+sudo npm install -g sql-language-server
 
 # TOML LSP
 cargo install taplo-cli
 
 # Vue LSP
-npm install -g @volar/server
-
-# XML LSP
-npm install -g vscode-xml
+sudo npm install -g @vue/language-server
 
 # YAML LSP
-npm install -g yaml-language-server
+sudo npm install -g yaml-language-server
 
 echo "All LSPs have been installed."
+
+# Cleanup temp directory
+echo "Cleaning up temp files..."
+rm -rf "$TEMP_DIR"
+echo "Cleanup completed."
+
+# Install debugger tools
+echo "Installing debugger..."
+sudo pacman -S --noconfirm llvm
+go install github.com/go-delve/delve/cmd/dlv@latest
